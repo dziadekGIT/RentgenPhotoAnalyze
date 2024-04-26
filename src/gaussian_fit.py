@@ -40,19 +40,19 @@ def picture_size():
     size = Image.open('../choise_temp/choise.jpg').size
     return size
     
-
-
 def read_images():
     """
     @TODO
     """
     path = '../datasets/'
     images = []
-    for filename in os.listdir(path):
+    for filename in sorted(os.listdir(path)):
         if filename.endswith('.jpg'):
             image_path = os.path.join(path, filename)
             image = Image.open(image_path, 'r')
+            # print(image.mode)
             images.append(image)
+            # print(images)
     return images        
 
 
@@ -97,7 +97,7 @@ def analyse_image(images_data, clk_location, bg_cutout):
     average_contrasts = []
     for pixel_contrasts in pixel_data:
         average_contrasts.append(pixel_contrasts)
-        # print(pixel_contrasts)
+        print(pixel_contrasts)
     
     
 
@@ -155,22 +155,22 @@ def analyse_image(images_data, clk_location, bg_cutout):
     
     
     # Rysowanie wykresu
-    # fc = range(0, 138)
-    # fig, ax = plt.subplots(1, 2, figsize=(20, 5))   
-    # ax[0].plot(fc,average_contrasts)
-    # ax[0].set_ylabel("Contrast")
-    # ax[0].set_title("Photo count")
+    fc = range(0, 138)
+    fig, ax = plt.subplots(1, 2, figsize=(20, 5))   
+    ax[0].plot(fc,average_contrasts)
+    ax[0].set_ylabel("Contrast")
+    ax[0].set_title("Photo count")
   
    
-    # ax[1].scatter(x_values, y_values, s=5,c='red', marker='o', label='Data')
-    # ax[1].plot(x_fit, y_fit, '-', label=f'Gaussian fit\nFWHMS: {fwhms}\nPeak: {peak}')
-    # ax[1].legend()
-    # plt.title(f'Gaussian fit (sum of {num_gaussians})')
-    # plt.xlabel('X-axis')
-    # plt.ylabel('Y-axis')
+    ax[1].scatter(x_values, y_values, s=5,c='red', marker='o', label='Data')
+    ax[1].plot(x_fit, y_fit, '-', label=f'Gaussian fit\nFWHMS: {fwhms}\nPeak: {peak}')
+    ax[1].legend()
+    plt.title(f'Gaussian fit (sum of {num_gaussians})')
+    plt.xlabel('X-axis')
+    plt.ylabel('Y-axis')
 
-    # plt.show()
-    # plt.close()
+    plt.show()
+    plt.close()
     warnings.filterwarnings("ignore", category=OptimizeWarning)
         
     return fwhms
@@ -181,7 +181,7 @@ if __name__ == "__main__":
     if True:
         images = read_images()
     
-    if False:
+    if True:
         location = clicked_location()
     
     if True:
@@ -189,12 +189,13 @@ if __name__ == "__main__":
         size = picture_size()
         # print(size)    
 
-    if False:   
-        location =[(1098, 1208)]
+    if True:   
+        # location =[(1098, 1208)]
+        # background_cutout = 70
         wynik = analyse_image(images_data=images, clk_location=location, bg_cutout=background_cutout)
         print(wynik)
 
-    if True:
+    if False:
         # size = (2896, 2416)
         
         inner_area = (1, 1)
