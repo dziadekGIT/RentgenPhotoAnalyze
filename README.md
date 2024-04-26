@@ -1,4 +1,4 @@
-#RentgenPhotoAnalyze - script for stacking photos rentgen photos of alloys.
+#RentgenPhotoAnalyze - script for stacking X-ray photos of alloys.
 Reading reflections from group of atoms from photo and fitting gaussian bell curve as FHMW values.
 
 Picking point to analyze : 
